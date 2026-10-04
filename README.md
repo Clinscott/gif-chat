@@ -37,6 +37,11 @@ export GIF_SOURCE_ROOT="$PWD/.local/inbox"
 ./bin/gif-picker
 ```
 
+If you use [uv](https://docs.astral.sh/uv/guides/install-python/),
+`uv venv --python 3.12.14 .venv` can provision the pinned Python instead of the
+`python3.12 -m venv` step. Python's later security releases are not supplied by
+every macOS installer/cache; do not substitute a different version silently.
+
 Open the printed loopback URL. Click **GIF**, choose an original, optionally play
 its preview, then click **Use this GIF**. Copy the request into a chat using the
 plugin. The selected original remains in the private inbox until you remove it.
