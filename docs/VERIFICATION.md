@@ -14,6 +14,7 @@ local fingerprint lock. CLI inspection: Codex 0.157.0 and Claude Code 2.1.289.
 | Picker-to-package intake | Uploaded original was byte-exact and then inspected successfully | Explicit browser selection can enter the approved inbox for either adapter |
 | Owned shutdown | Both stdio processes exited 0; picker ports closed | Package-owned picker lifetime ends with its MCP process |
 | Browser integration | Real file chooser, request preparation and opt-in playback passed; 390 px viewport had no overflow or page errors | Actual local browser picker behavior, independent of native host UI |
+| Hosted macOS CI | [Passed on source commit 948682a](https://github.com/Clinscott/gif-chat/actions/runs/37245403782) | Clean checkout, publicly provisioned pinned Python/Pillow, all source tests and both packaged MCP checks |
 | Package and library inventories | Both plugin inventories and four original assets/posters verified | Shipped files have reproducible SHA-256 identities |
 
 All release checks made **zero model calls**. No plugin was installed or activated,
@@ -58,3 +59,5 @@ The source suite's widget bridge test requires Node and reports a skip if absent
 The eight Claude mod tests require the compatible Claude CLI and make no model
 calls. GitHub CI runs source/package checks; its result is separate from these
 local receipts. The operator-shut-down experiment campaign remains stopped.
+
+The first hosted run stopped before tests because actions/setup-python did not provide Python 3.12.14 for macOS. The corrected workflow provisions the pinned version through uv; the successful run above is retained separately from that initial failure. No runtime version or decoder contract was relaxed.

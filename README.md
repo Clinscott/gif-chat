@@ -4,6 +4,9 @@ Send your agent motion, not just a thumbnail. GIF Chat turns an original GIF int
 ordered PNG frames, timing and source hashes using a bounded local MCP server.
 Your existing Codex or Claude Code conversation interprets the evidence.
 
+[Download the 0.4.0 developer preview](https://github.com/Clinscott/gif-chat/releases/tag/v0.4.0),
+with separate Codex and Claude Code ZIPs and SHA-256 checksums.
+
 This public developer preview includes two ready-to-load packages:
 
 - **Claude Code plugin and mod:** a real **GIF** button above the prompt opens
