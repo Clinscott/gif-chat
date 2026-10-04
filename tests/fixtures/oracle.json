@@ -1,0 +1,26 @@
+{
+  "asset-01.gif": {
+    "family": "middle",
+    "answer": "up"
+  },
+  "asset-02.gif": {
+    "family": "order",
+    "answer": "blue-green-red"
+  },
+  "asset-03.gif": {
+    "family": "order",
+    "answer": "red-green-blue"
+  },
+  "asset-04.gif": {
+    "family": "ending",
+    "answer": "left"
+  },
+  "asset-05.gif": {
+    "family": "ending",
+    "answer": "right"
+  },
+  "asset-06.gif": {
+    "family": "middle",
+    "answer": "down"
+  }
+}

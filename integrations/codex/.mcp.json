@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "gif-communication": {
+      "type": "stdio",
+      "command": "/bin/sh",
+      "args": [
+        "./bin/gif-communication-host"
+      ],
+      "cwd": ".",
+      "env": {
+        "GIF_HOST_KIND": "codex"
+      },
+      "env_vars": [
+        "GIF_PYTHON",
+        "GIF_SOURCE_ROOT",
+        "GIF_LIBRARY_ENABLED",
+        "GIF_RUNTIME_LOCK"
+      ]
+    }
+  }
+}

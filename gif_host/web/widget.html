@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>GIF picker</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    body { margin: 0; padding: 16px; }
+    h1 { font-size: 1rem; margin: 0 0 8px; }
+    p { margin: 8px 0; line-height: 1.45; }
+    .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+    button { font: inherit; font-weight: 650; padding: 10px 20px; min-height: 44px;
+      border: 1px solid currentColor; border-radius: 10px; cursor: pointer; }
+    button:disabled { opacity: .5; cursor: default; }
+    button:focus-visible, a:focus-visible { outline: 3px solid #7868ef; outline-offset: 3px; }
+    #status { font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main aria-labelledby="title">
+    <h1 id="title">Choose a GIF</h1>
+    <p>Choose a GIF in the local picker, then copy its inspection request back to this conversation.</p>
+    <div class="actions">
+      <button id="gif-button" type="button" disabled aria-label="GIF: open the local picker">GIF</button>
+      <a id="browser-link" target="_blank" rel="noopener noreferrer" hidden>Open in browser</a>
+    </div>
+    <p id="status" role="status" aria-live="polite">Waiting for the picker link…</p>
+  </main>
+  <script>
+    (() => {
+      "use strict";
+      const button = document.getElementById("gif-button");
+      const link = document.getElementById("browser-link");
+      const status = document.getElementById("status");
+      const pending = new Map();
+      let nextId = 0;
+      let pickerUrl = null;
+      let openLinks = false;
+      let stopped = false;
+      let bridgeInitialized = false;
+      let resizeObserver = null;
+      let resizeTimer = null;
+      let lastSize = null;
+
+      const send = (message) => window.parent.postMessage({jsonrpc: "2.0", ...message}, "*");
+      const reportSize = () => {
+        if (stopped || !bridgeInitialized) return;
+        const bounds = document.body.getBoundingClientRect();
+        const width = Math.ceil(bounds.width), height = Math.ceil(bounds.height);
+        if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return;
+        const size = width + ":" + height;
+        if (size === lastSize) return;
+        lastSize = size;
+        send({method: "ui/notifications/size-changed", params: {width, height}});
+      };
+      const scheduleSize = () => {
+        if (stopped || !bridgeInitialized || resizeTimer !== null) return;
+        resizeTimer = setTimeout(() => {
+          resizeTimer = null;
+          reportSize();
+        }, 50);
+      };
+      const request = (method, params) => new Promise((resolve, reject) => {
+        const id = ++nextId;
+        const timer = setTimeout(() => {
+          pending.delete(id);
+          reject({code: "timeout"});
+        }, 5000);
+        pending.set(id, {resolve, reject, timer});
+        send({id, method, params});
+      });
+
+      const clearPicker = () => {
+        pickerUrl = null;
+        button.disabled = true;
+        link.hidden = true;
+        link.removeAttribute("href");
+      };
+
+      const receiveResult = (result) => {
+        clearPicker();
+        const value = result?.structuredContent?.url;
+        try {
+          const url = new URL(value);
+          if (result?.isError || typeof value !== "string" || /\s/.test(value)
+              || url.protocol !== "http:" || !["127.0.0.1", "localhost", "[::1]"].includes(url.hostname)
+              || !/^http:\/\/(?:127\.0\.0\.1|localhost|\[::1\]):\d+(?:[/?#]|$)/i.test(value)
+              || url.username || url.password) throw new Error("Invalid local link");
+          pickerUrl = value;
+          link.href = value;
+          link.hidden = false;
+          button.disabled = false;
+          status.textContent = "Ready. This picker link lasts only for this local session.";
+        } catch (_) {
+          status.textContent = "The picker link is unavailable. Ask to open the GIF picker again.";
+        }
+        scheduleSize();
+      };
+
+      const receive = (event) => {
+        if (stopped || event.source !== window.parent) return;
+        const message = event.data;
+        if (!message || message.jsonrpc !== "2.0") return;
+        if (message.method === "ui/resource-teardown" && message.id !== undefined) {
+          stopped = true;
+          clearPicker();
+          resizeObserver?.disconnect();
+          if (resizeTimer !== null) clearTimeout(resizeTimer);
+          window.removeEventListener("resize", scheduleSize);
+          for (const entry of pending.values()) {
+            clearTimeout(entry.timer);
+            entry.reject({code: "closed"});
+          }
+          pending.clear();
+          window.removeEventListener("message", receive);
+          send({id: message.id, result: {}});
+          return;
+        }
+        if (message.method === undefined && pending.has(message.id)) {
+          const entry = pending.get(message.id);
+          pending.delete(message.id);
+          clearTimeout(entry.timer);
+          if (message.error) entry.reject(message.error);
+          else if ("result" in message) entry.resolve(message.result);
+          else entry.reject({code: "invalid_response"});
+          return;
+        }
+        if (message.method === "ui/notifications/tool-result") receiveResult(message.params);
+        if (message.method === "ui/notifications/tool-cancelled") {
+          clearPicker();
+          status.textContent = "Picker opening was cancelled.";
+          scheduleSize();
+        }
+      };
+      window.addEventListener("message", receive);
+
+      button.addEventListener("click", async () => {
+        if (!pickerUrl || stopped) return;
+        if (!openLinks) {
+          link.click();
+          return;
+        }
+        button.disabled = true;
+        try {
+          await request("ui/open-link", {url: pickerUrl});
+          if (!stopped) status.textContent = "Picker opened. Copy the inspection request back here after choosing your GIF.";
+        } catch (error) {
+          if (error.code === -32601 || error.code === "timeout") openLinks = false;
+          if (!stopped) status.textContent = "The host could not open the picker. Use the browser link.";
+        } finally {
+          button.disabled = stopped || !pickerUrl;
+          scheduleSize();
+        }
+      });
+
+      request("ui/initialize", {
+        appInfo: {name: "gif-chat-picker", version: "1.0.0"},
+        appCapabilities: {availableDisplayModes: ["inline"]}, protocolVersion: "2026-01-26"
+      }).then((result) => {
+        if (stopped) return;
+        if (result?.protocolVersion !== "2026-01-26" || !result.hostCapabilities
+            || typeof result.hostCapabilities !== "object" || Array.isArray(result.hostCapabilities)) {
+          throw new Error("Unsupported MCP Apps bridge");
+        }
+        bridgeInitialized = true;
+        openLinks = !!result.hostCapabilities.openLinks;
+        send({method: "ui/notifications/initialized", params: {}});
+        if (typeof ResizeObserver === "function") {
+          resizeObserver = new ResizeObserver(scheduleSize);
+          resizeObserver.observe(document.body);
+        }
+        window.addEventListener("resize", scheduleSize);
+        reportSize();
+      }).catch(() => {
+        if (!stopped && !pickerUrl) status.textContent = "Use the picker link in the conversation if this host does not display GIF controls.";
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "name": "gif-chat",
+  "displayName": "GIF Chat",
+  "version": "0.4.0",
+  "description": "A GIF button and /gif command for original GIF evidence through a bounded local MCP server.",
+  "author": {
+    "name": "Clinscott"
+  },
+  "homepage": "https://github.com/Clinscott/gif-chat",
+  "repository": "https://github.com/Clinscott/gif-chat",
+  "keywords": [
+    "gif",
+    "media-evidence",
+    "local"
+  ],
+  "userConfig": {
+    "python_executable": {
+      "type": "file",
+      "title": "Pinned Python executable",
+      "description": "Absolute path to the Python 3.12.14 executable with Pillow 12.3.0 required by the GIF Communication runtime.",
+      "required": true
+    },
+    "source_root": {
+      "type": "directory",
+      "title": "Trusted GIF source directory",
+      "description": "Private directory containing only original GIFs authorized for this session. /gif paths are relative to this directory.",
+      "required": true
+    },
+    "library_enabled": {
+      "type": "boolean",
+      "title": "Enable local reply library",
+      "description": "Expose the optional bundled reply GIF library. This never sends media.",
+      "default": false
+    },
+    "runtime_lock": {
+      "type": "file",
+      "title": "Local runtime enrollment lock",
+      "description": "Absolute path to the lock created by tools/configure_runtime.py for your selected Python/Pillow. Local enrollment is not original runtime or native host qualification.",
+      "required": true
+    }
+  }
+}

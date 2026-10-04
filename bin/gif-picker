@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+: "${GIF_PYTHON:?Set GIF_PYTHON to the provisioned Python executable}"
+: "${GIF_SOURCE_ROOT:?Set GIF_SOURCE_ROOT to your private GIF inbox}"
+GIF_PICKER_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+exec "$GIF_PYTHON" -I -B -c 'import runpy,sys; sys.path.insert(0,sys.argv.pop(1)); runpy.run_module("gif_host.picker",run_name="__main__")' "$GIF_PICKER_ROOT" --source-root "$GIF_SOURCE_ROOT"

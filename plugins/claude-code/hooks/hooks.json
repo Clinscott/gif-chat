@@ -1,0 +1,4 @@
+{
+  "description": "GIF Chat button, original-path pane and explicit /gif command",
+  "modules": ["./register.js"]
+}

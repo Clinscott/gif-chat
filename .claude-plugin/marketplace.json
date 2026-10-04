@@ -1,0 +1,11 @@
+{
+  "name": "gif-chat",
+  "owner": {"name": "Craig Linscott"},
+  "plugins": [{
+    "name": "gif-chat",
+    "source": "./plugins/claude-code",
+    "description": "Read GIF motion in your current chat, with a supported GIF button and local MCP tools.",
+    "version": "0.4.0",
+    "license": "MIT"
+  }]
+}

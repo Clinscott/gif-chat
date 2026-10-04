@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "library_id": "gif-chat-reactions-v1",
+  "assets": [
+    {
+      "id": "celebrate-stars",
+      "title": "A little victory",
+      "description": "New stars burst around a delighted raven.",
+      "tags": [
+        "reaction",
+        "celebrate",
+        "congrats",
+        "victory",
+        "success",
+        "joyful"
+      ],
+      "spoke": "GIF Chat",
+      "tone": "joyful",
+      "avoid_when": [
+        "When the outcome is not confirmed"
+      ],
+      "file": "assets/celebrate-stars.gif",
+      "poster": "posters/celebrate-stars.png",
+      "sha256": "08b9b9e7474be0589e17a72f596ef202d5607ec84a8df167da7c0d50e4f5ebfe",
+      "poster_sha256": "7500d18eea58a30d9fd5c3a8f8f3f0cb79d7024fbac09aab41af180bce129ef0",
+      "bytes": 188274,
+      "width": 320,
+      "height": 240,
+      "frame_count": 12,
+      "duration_ms": 1320,
+      "provenance": {
+        "kind": "original-generated-artwork",
+        "creator": "GIF Chat",
+        "source": "Bundled original artwork",
+        "rights": "MIT"
+      }
+    },
+    {
+      "id": "thanks-glow",
+      "title": "Thank you",
+      "description": "A glowing heart rises from a feather.",
+      "tags": [
+        "reaction",
+        "thanks",
+        "thank-you",
+        "gratitude",
+        "appreciate",
+        "warm"
+      ],
+      "spoke": "GIF Chat",
+      "tone": "grateful",
+      "avoid_when": [
+        "When gratitude would feel dismissive"
+      ],
+      "file": "assets/thanks-glow.gif",
+      "poster": "posters/thanks-glow.png",
+      "sha256": "4cd9fe72902db28036ffdcba1f727cd9293bf43c3d642c6f7f677e266c929ffb",
+      "poster_sha256": "f46866a0a8896bdcb8028e71e7545d4323b9647336215a86be1624b8fe238ec0",
+      "bytes": 181392,
+      "width": 320,
+      "height": 240,
+      "frame_count": 12,
+      "duration_ms": 1320,
+      "provenance": {
+        "kind": "original-generated-artwork",
+        "creator": "GIF Chat",
+        "source": "Bundled original artwork",
+        "rights": "MIT"
+      }
+    },
+    {
+      "id": "waiting-moon",
+      "title": "Still here",
+      "description": "A crescent and orbit mark a patient pause.",
+      "tags": [
+        "reaction",
+        "wait",
+        "waiting",
+        "patience",
+        "hold",
+        "thinking",
+        "pending"
+      ],
+      "spoke": "GIF Chat",
+      "tone": "patient",
+      "avoid_when": [
+        "When an immediate answer is needed"
+      ],
+      "file": "assets/waiting-moon.gif",
+      "poster": "posters/waiting-moon.png",
+      "sha256": "e70bc32f34fb0621ce0f3e1821ace13ea6649ea5b35c1376139d508ad50c58a9",
+      "poster_sha256": "b0db7dd6c7728c09e789e1d7d6a39e5d2dd523716116e8091c7f311c1ec28147",
+      "bytes": 175242,
+      "width": 320,
+      "height": 240,
+      "frame_count": 12,
+      "duration_ms": 1320,
+      "provenance": {
+        "kind": "original-generated-artwork",
+        "creator": "GIF Chat",
+        "source": "Bundled original artwork",
+        "rights": "MIT"
+      }
+    },
+    {
+      "id": "sorry-feather",
+      "title": "My mistake",
+      "description": "A fallen feather lifts gently back up.",
+      "tags": [
+        "reaction",
+        "sorry",
+        "apology",
+        "mistake",
+        "acknowledge",
+        "repair"
+      ],
+      "spoke": "GIF Chat",
+      "tone": "sincere",
+      "avoid_when": [
+        "When an apology needs a concrete repair"
+      ],
+      "file": "assets/sorry-feather.gif",
+      "poster": "posters/sorry-feather.png",
+      "sha256": "ba3bd02be296cd0efd6a245ea10a1071a03cd2b6d259e487297da2b410f4e64e",
+      "poster_sha256": "1ee976d503788369033c9a9d46ae625750d6a0dff60a203632ae36b3ffce5974",
+      "bytes": 187664,
+      "width": 320,
+      "height": 240,
+      "frame_count": 12,
+      "duration_ms": 1320,
+      "provenance": {
+        "kind": "original-generated-artwork",
+        "creator": "GIF Chat",
+        "source": "Bundled original artwork",
+        "rights": "MIT"
+      }
+    }
+  ]
+}

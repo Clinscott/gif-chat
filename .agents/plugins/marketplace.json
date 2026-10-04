@@ -1,0 +1,10 @@
+{
+  "name": "gif-chat",
+  "interface": {"displayName": "GIF Chat"},
+  "plugins": [{
+    "name": "gif-chat",
+    "source": {"source": "local", "path": "./plugins/codex"},
+    "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+    "category": "Productivity"
+  }]
+}

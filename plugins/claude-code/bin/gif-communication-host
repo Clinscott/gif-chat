@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+: "${GIF_PYTHON:?Configure the pinned Python executable in trusted host settings}"
+: "${GIF_SOURCE_ROOT:?Configure the directory of approved originals in trusted host settings}"
+case "$GIF_PYTHON" in /*) ;; *) echo 'The Python executable must be absolute.' >&2; exit 1 ;; esac
+case "${GIF_LIBRARY_ENABLED:-0}" in
+    1|true) GIF_LIBRARY_FLAG=--library ;;
+    0|false) GIF_LIBRARY_FLAG= ;;
+    *) echo 'Library configuration must be 0, 1, false or true.' >&2; exit 1 ;;
+esac
+GIF_HOST_PACKAGE_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+GIF_RUNTIME_LOCK=${GIF_RUNTIME_LOCK:-"$GIF_HOST_PACKAGE_ROOT/.local/runtime-lock.json"}
+case "$GIF_RUNTIME_LOCK" in /*) ;; *) echo 'The runtime enrollment lock must be absolute.' >&2; exit 1 ;; esac
+export GIF_RUNTIME_LOCK
+exec "$GIF_PYTHON" -I -B "$GIF_HOST_PACKAGE_ROOT/gif_host/server.py" --source-root "$GIF_SOURCE_ROOT" ${GIF_LIBRARY_FLAG:+"$GIF_LIBRARY_FLAG"}

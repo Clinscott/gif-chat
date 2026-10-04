@@ -1,0 +1,31 @@
+{
+  "name": "gif-chat",
+  "version": "0.4.0",
+  "description": "Inspect an authorized incoming GIF and optionally inspect a bundled reply GIF in the existing conversation.",
+  "author": {
+    "name": "Craig Linscott"
+  },
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "keywords": [
+    "gif",
+    "incoming",
+    "media-evidence",
+    "reply-library"
+  ],
+  "interface": {
+    "displayName": "GIF Chat",
+    "shortDescription": "Read GIF motion in your current chat.",
+    "longDescription": "Inspect original GIFs and open a local picker. Optional MCP Apps UI depends on your host; native composer injection is not established.",
+    "developerName": "Craig Linscott",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Help me understand an incoming GIF."
+    ]
+  },
+  "repository": "https://github.com/Clinscott/gif-chat",
+  "license": "MIT"
+}

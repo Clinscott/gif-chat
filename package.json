@@ -1,0 +1,7 @@
+{
+  "name": "gif-chat-browser-checks",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Optional local browser verification; no model client",
+  "devDependencies": {"playwright": "1.62.1"}
+}

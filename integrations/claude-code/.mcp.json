@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "gif-communication": {
+      "command": "/bin/sh",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/bin/gif-communication-host"
+      ],
+      "env": {
+        "GIF_PYTHON": "${user_config.python_executable}",
+        "GIF_SOURCE_ROOT": "${user_config.source_root}",
+        "GIF_LIBRARY_ENABLED": "${user_config.library_enabled}",
+        "GIF_RUNTIME_LOCK": "${user_config.runtime_lock}"
+      }
+    }
+  }
+}

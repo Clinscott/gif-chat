@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "version": "0.4.0",
+  "host": "claude-code",
+  "generated_by": "tools/build_plugins.py",
+  "content_sha256": "38dd46ff1359fefddcf0c03231c6b132bd89e200c2d8346ee0addb7ee5e89a7f",
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "bytes": 1489,
+      "sha256": "5e014f520c2db4468a7d96df88f588f210d6361edba4b8f8f9f64bf52aaf09f4",
+      "mode": "0644"
+    },
+    {
+      "path": ".mcp.json",
+      "bytes": 432,
+      "sha256": "c01f29ca9bac70b8c6d9076cd99c232da3f51dbf6fd1decd15ef95c5a2eafdf1",
+      "mode": "0644"
+    },
+    {
+      "path": ".python-version",
+      "bytes": 8,
+      "sha256": "f50159fad3f4319868eb38717b91d55843c41e9803014c8de05e116a6d0bcfdc",
+      "mode": "0644"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1071,
+      "sha256": "9ab057b4a4d9aa8952d15f48ca5508f6825eca23ac8a396d10c92d9dc3e57647",
+      "mode": "0644"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3830,
+      "sha256": "ff3a6f18b8a24f8c1e79e2afd83e4ddd1bed4e253f2e0b6795348bafe1a51c4d",
+      "mode": "0644"
+    },
+    {
+      "path": "bin/gif-communication-host",
+      "bytes": 928,
+      "sha256": "9fd7290a68b19f74539b4b23228f529d98da647018de095abecb26046ed12e4e",
+      "mode": "0755"
+    },
+    {
+      "path": "bin/gif-picker",
+      "bytes": 415,
+      "sha256": "05839c9d0d42eb7193f348d1048f58cfa31c5ac091bf90b2d154275db4d942db",
+      "mode": "0755"
+    },
+    {
+      "path": "gif_communication/__init__.py",
+      "bytes": 22,
+      "sha256": "e364931a8afff672985ee99f795e6d8b20ff33c55d71d757ec211ec6689b3c19",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/contracts.py",
+      "bytes": 1386,
+      "sha256": "e2960fa1d350fb1fcf07b81b1993ace76728b9cfbf06763258ba2c0690487050",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/decoder.py",
+      "bytes": 7751,
+      "sha256": "17baba939c9887bb6d0cd839f9ff77e7f761d20801ca7699516bbb2a4bb760f7",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/intake.py",
+      "bytes": 5435,
+      "sha256": "c8a835b0479cf9a5bd8b2b06964ef3e346bd0fa95b1648d29555860392ee4c14",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/library.py",
+      "bytes": 7540,
+      "sha256": "5af49ff67db2c3e8ce2dc093f27a5ad5e79dc734b8519e7776dc9d236f98d5c0",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/parser.py",
+      "bytes": 5280,
+      "sha256": "6397bd276b445c92ff08e98a41e35bf1692c88043130ae5eb52d8e5d58640fb6",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/runtime.py",
+      "bytes": 3442,
+      "sha256": "30fca29b3c5c638d85d791751da096cdb6cbc0f96fe33502fadaaced34dea137",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/schemas.py",
+      "bytes": 7492,
+      "sha256": "b7fda45bac8fe83df1a2c154cb0c992924d40a16d025f59316dd3c5fdcf331a6",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/server.py",
+      "bytes": 7799,
+      "sha256": "ffaee6601c97c244c4caa0ab1c6e835ce0a0ba42f619829f246d74c3bdb73960",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/service.py",
+      "bytes": 10455,
+      "sha256": "881158714b4c5eb9dd0e07b06269def2d4cd95d72a0c73181600da0a970678a0",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/supervisor.py",
+      "bytes": 5441,
+      "sha256": "73390606bce17737f8c359e2db59d74db339204ef384a98ebe3ce059c91842c9",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_communication/worker.py",
+      "bytes": 1662,
+      "sha256": "c6f19d2c7e27937d4ffa2d533a69b684a8d5730c52e9e7d116e8bc5695363548",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/__init__.py",
+      "bytes": 83,
+      "sha256": "0b683de5285058390d49abc00f847dfacf536128942798eb89ebbf78eab8923f",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/intake.py",
+      "bytes": 5574,
+      "sha256": "93e285129d9f228cab788356b2dad96e70e7494743db82c2878d8e1acc27a8a3",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/picker.py",
+      "bytes": 7730,
+      "sha256": "ac718aa9eca85aea239f2c8a7313a76e5f6986ca09a79070998077009682dc5e",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/server.py",
+      "bytes": 4067,
+      "sha256": "856579ce71bf9c3f26efadb6ef78c4d406fad688e2f135358da804fe7c761d42",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/ui.py",
+      "bytes": 2580,
+      "sha256": "a2846ae08fa0fc2544b02486f660461ad8ce6c83fa24ee92058b6569ad1bab97",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/web/picker.css",
+      "bytes": 1809,
+      "sha256": "19ca065b2a8e174d43d4468a6f91f3758b9c20d2a1991569347fe090626aa525",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/web/picker.html",
+      "bytes": 1662,
+      "sha256": "97ad4f9cec8742dcfd2ff04a92594b29cec5e0f0b39e1d338016d21a9d851364",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/web/picker.js",
+      "bytes": 2653,
+      "sha256": "45dda6d7304b1e1f7cb778dbedb28c554ed8e846345b6ce56476b5b0c8bf1a93",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/web/widget.html",
+      "bytes": 7558,
+      "sha256": "0087de05e5ac7ac80022cc2c00c68f7e215224bec3433e31d6924cc4348ac7dd",
+      "mode": "0644"
+    },
+    {
+      "path": "hooks/hooks.json",
+      "bytes": 117,
+      "sha256": "c320f8721da2608d805bc2556141bde04e7171c7482cecac2852b70d78428222",
+      "mode": "0644"
+    },
+    {
+      "path": "hooks/register.js",
+      "bytes": 4502,
+      "sha256": "b4f1b9132be59f890a808873df732b88d27b307ed56f348a005faef2ec47f4ff",
+      "mode": "0644"
+    },
+    {
+      "path": "library/assets/celebrate-stars.gif",
+      "bytes": 188274,
+      "sha256": "08b9b9e7474be0589e17a72f596ef202d5607ec84a8df167da7c0d50e4f5ebfe",
+      "mode": "0644"
+    },
+    {
+      "path": "library/assets/sorry-feather.gif",
+      "bytes": 187664,
+      "sha256": "ba3bd02be296cd0efd6a245ea10a1071a03cd2b6d259e487297da2b410f4e64e",
+      "mode": "0644"
+    },
+    {
+      "path": "library/assets/thanks-glow.gif",
+      "bytes": 181392,
+      "sha256": "4cd9fe72902db28036ffdcba1f727cd9293bf43c3d642c6f7f677e266c929ffb",
+      "mode": "0644"
+    },
+    {
+      "path": "library/assets/waiting-moon.gif",
+      "bytes": 175242,
+      "sha256": "e70bc32f34fb0621ce0f3e1821ace13ea6649ea5b35c1376139d508ad50c58a9",
+      "mode": "0644"
+    },
+    {
+      "path": "library/catalog.json",
+      "bytes": 3944,
+      "sha256": "9606e4d592cfe2c915d4f41836e6ff6d06ecb07c17cf96f4cefeafb7858c6501",
+      "mode": "0644"
+    },
+    {
+      "path": "library/posters/celebrate-stars.png",
+      "bytes": 14153,
+      "sha256": "7500d18eea58a30d9fd5c3a8f8f3f0cb79d7024fbac09aab41af180bce129ef0",
+      "mode": "0644"
+    },
+    {
+      "path": "library/posters/sorry-feather.png",
+      "bytes": 13856,
+      "sha256": "1ee976d503788369033c9a9d46ae625750d6a0dff60a203632ae36b3ffce5974",
+      "mode": "0644"
+    },
+    {
+      "path": "library/posters/thanks-glow.png",
+      "bytes": 12875,
+      "sha256": "f46866a0a8896bdcb8028e71e7545d4323b9647336215a86be1624b8fe238ec0",
+      "mode": "0644"
+    },
+    {
+      "path": "library/posters/waiting-moon.png",
+      "bytes": 11949,
+      "sha256": "b0db7dd6c7728c09e789e1d7d6a39e5d2dd523716116e8091c7f311c1ec28147",
+      "mode": "0644"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 15,
+      "sha256": "41b54a6fb2918667ca47a61d73b522629d84490f3d78f0f20b21135faba10d35",
+      "mode": "0644"
+    },
+    {
+      "path": "schemas/evidence.v1.json",
+      "bytes": 10509,
+      "sha256": "aca7c7e68e4f4ff6ab0ce32a96ffeb9a709e44b899a51406d544945757500ac5",
+      "mode": "0644"
+    },
+    {
+      "path": "schemas/find_reply_gif.v1.json",
+      "bytes": 427,
+      "sha256": "015a1ff165b5044d6914e81a7434409e746c7d6d907d025dd1573b7217537ad8",
+      "mode": "0644"
+    },
+    {
+      "path": "schemas/find_reply_gif_result.v1.json",
+      "bytes": 6541,
+      "sha256": "c5323b6a675fedac357b38ec233a3eac6a8a09221901033700af58dc252a62a1",
+      "mode": "0644"
+    },
+    {
+      "path": "schemas/get_gif_frames.v1.json",
+      "bytes": 638,
+      "sha256": "07e5009f1c8b5d45a6d700077a8ea1adab827fe5fe75bb1fcd35648739556c11",
+      "mode": "0644"
+    },
+    {
+      "path": "schemas/inspect_gif.v1.json",
+      "bytes": 1184,
+      "sha256": "1e94163859e0befea64ca4706b640417e032eb25a9219b627ee86202d65269c3",
+      "mode": "0644"
+    },
+    {
+      "path": "schemas/inspect_gif.v2.json",
+      "bytes": 1630,
+      "sha256": "bf4ca09325ae3920cea23c077a92366aa457b662ee4f9a10f1cd4ff29d494f68",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/gif-communication/SKILL.md",
+      "bytes": 2079,
+      "sha256": "d9d2031f7403a6a0c3fc6a7c20ebc382d806d99c6af6a663932eab2b2ed7aa6a",
+      "mode": "0644"
+    },
+    {
+      "path": "tools/configure_runtime.py",
+      "bytes": 1707,
+      "sha256": "e5bbfaa06518c422e3f98d5edc509ea1b30d78067b5db303abe6101a0f4e33e2",
+      "mode": "0644"
+    }
+  ]
+}

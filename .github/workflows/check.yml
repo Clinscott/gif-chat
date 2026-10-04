@@ -1,0 +1,24 @@
+name: Source and package checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  macos:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install -r requirements.txt -r requirements-dev.txt
+      - run: python tools/configure_runtime.py
+      - run: python tools/check.py
+      - run: python tools/build_plugins.py
+      - run: python tools/smoke_plugins.py --plugins build/plugins
+        env:
+          GIF_RUNTIME_LOCK: ${{ github.workspace }}/.local/runtime-lock.json
+      - name: Claude offline mod tests require the host CLI
+        run: echo 'Run integrations/claude-code/tests/run_offline.py locally with Claude Code 2.1.287 or later; it makes no model calls.'
