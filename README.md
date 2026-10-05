@@ -101,7 +101,8 @@ user settings even with a local installation. Start a fresh session to load the
 mod and its MCP server together.
 
 The mod requires **Claude Code 2.1.287 or later** with mods enabled. Its GIF
-button draws on terminal and Desktop Code surfaces; other surfaces use `/gif`.
+button has been observed in the native terminal. It also targets Desktop Code;
+native Desktop rendering remains unverified. Other surfaces use `/gif`.
 Click **GIF**, enter a path relative to the configured inbox, and click
 **Inspect GIF**. The local picker shows the generated relative path in its request.
 Cancel/Escape sends nothing. Your existing prompt draft is left intact.
