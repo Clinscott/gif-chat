@@ -64,10 +64,12 @@ The repository contains a Codex marketplace and the complete plugin at
 add the marketplace using its supported CLI:
 
 ```sh
-codex plugin marketplace add Clinscott/gif-chat
+codex plugin marketplace add Clinscott/gif-chat --ref v0.4.0
+codex plugin add gif-chat@gif-chat
 ```
 
-Use the host’s Plugins directory to install **GIF Chat**, then start a fresh chat.
+These commands install **GIF Chat** through the supported plugin manager. Start a
+fresh chat with the trusted runtime and private inbox environment available.
 Ask “Open the GIF picker” to invoke `open_gif_picker`, or paste the picker’s
 inspection request. MCP Apps-compatible hosts can render its inline GIF button;
 other hosts receive the local picker link. See [host UI support](docs/HOST-UI.md).
@@ -84,10 +86,19 @@ Configure its required options: `python_executable`, `source_root` and
 `runtime_lock` using the absolute values above. You can also install from the
 bundled marketplace:
 
-```text
-/plugin marketplace add Clinscott/gif-chat
-/plugin install gif-chat@gif-chat
+```sh
+claude plugin marketplace add Clinscott/gif-chat#v0.4.0 --scope local
+claude plugin install gif-chat@gif-chat --scope local \
+  --config python_executable="$GIF_PYTHON" \
+  --config source_root="$GIF_SOURCE_ROOT" \
+  --config runtime_lock="$GIF_RUNTIME_LOCK" \
+  --config library_enabled=false
 ```
+
+This keeps the declaration local to the current project. Use a dedicated private
+inbox for the conversation. Claude stores the required plugin options in its
+user settings even with a local installation. Start a fresh session to load the
+mod and its MCP server together.
 
 The mod requires **Claude Code 2.1.287 or later** with mods enabled. Its GIF
 button draws on terminal and Desktop Code surfaces; other surfaces use `/gif`.
@@ -133,7 +144,7 @@ The plugin folders are generated, self-contained artifacts with SHA-256 inventor
 their canonical sources are the shared runtime and `integrations/` templates.
 No private experiment history or user media is part of this repository.
 [Release checks](docs/VERIFICATION.md) distinguish source/protocol/offline UI tests
-from installed native-host behavior. The previous experiment campaign remains stopped.
+from installed native-host behavior.
 
 MIT licensed, including the four bundled original reaction GIFs. Third-party GIFs
 you select remain yours and are not included in the distribution.

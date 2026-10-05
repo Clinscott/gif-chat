@@ -1,7 +1,8 @@
 # What the previous experiment measured
 
-The experiments were explicitly shut down before this public packaging work.
-No new model benchmarks are run by this repository’s tools or tests.
+This pilot predates the public package. The repository's source and offline mod
+tests make no model calls. Installed-host smoke evaluations are recorded separately
+in [release verification](VERIFICATION.md); they do not reproduce this comparison.
 
 The strongest completed pilot compared seven paired GIF groups (14 tasks):
 one batched request at requested high effort versus two separate requests at
