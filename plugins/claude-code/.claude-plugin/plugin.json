@@ -1,7 +1,7 @@
 {
   "name": "gif-chat",
   "displayName": "GIF Chat",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A GIF button and /gif command for original GIF evidence through a bounded local MCP server.",
   "author": {
     "name": "Clinscott"

@@ -7,10 +7,10 @@ import shutil
 import stat
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.4.0"
+VERSION = "0.5.0"
 MODULES = ("__init__", "contracts", "parser", "decoder", "intake", "runtime", "schemas",
            "server", "service", "supervisor", "worker", "library")
-HOST_MODULES = ("__init__", "intake", "server", "picker", "ui")
+HOST_MODULES = ("__init__", "intake", "server", "picker", "repository", "ui")
 ASSETS = ("celebrate-stars", "thanks-glow", "waiting-moon", "sorry-feather")
 
 
@@ -52,9 +52,11 @@ def inventory(host):
 
 def validate_tree(package, data):
     entries = data["files"]
+    paths = {entry["path"] for entry in entries}
+    # A verified prior package may have fewer leaves when a release adds a module.
+    # Its actual files must still match its recorded hashes, modes and tree exactly.
     if (data.get("generated_by") != "tools/build_plugins.py" or
-            {e["path"] for e in entries} != set(source_files(data["host"])) or
-            len(entries) != len(source_files(data["host"]))):
+            not paths <= set(source_files(data["host"])) or len(entries) != len(paths)):
         raise ValueError("Unknown package ownership or paths")
     digest = hashlib.sha256(json.dumps(entries, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
     if digest != data.get("content_sha256"):

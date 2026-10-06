@@ -78,7 +78,7 @@ def smoke(package):
         try:
             initialized = rpc("initialize", {"protocolVersion": "2025-11-25", "capabilities": {},
                                              "clientInfo": {"name": "gif-chat-smoke", "version": "1"}})
-            assert initialized["serverInfo"]["version"] == "0.4.0"
+            assert initialized["serverInfo"]["version"] == "0.5.0"
             assert "resources" in initialized["capabilities"]
             child.stdin.write(b'{"jsonrpc":"2.0","method":"notifications/initialized"}\n')
             names = [tool["name"] for tool in rpc("tools/list", {})["tools"]]

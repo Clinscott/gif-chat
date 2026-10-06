@@ -4,7 +4,7 @@ Send your agent motion, not just a thumbnail. GIF Chat turns an original GIF int
 ordered PNG frames, timing and source hashes using a bounded local MCP server.
 Your existing Codex or Claude Code conversation interprets the evidence.
 
-[Download the 0.4.0 developer preview](https://github.com/Clinscott/gif-chat/releases/tag/v0.4.0),
+[Download the 0.5.0 developer preview](https://github.com/Clinscott/gif-chat/releases/tag/v0.5.0),
 with separate Codex and Claude Code ZIPs and SHA-256 checksums.
 
 This public developer preview includes two ready-to-load packages:
@@ -15,10 +15,9 @@ This public developer preview includes two ready-to-load packages:
 - **Codex plugin:** the same MCP tools, a focused skill and an optional MCP Apps
   GIF button. Widget rendering depends on the host; native Codex composer button
   injection is not established. The local picker works as the portable fallback.
-- **Local picker:** a real file chooser, opt-in animated preview, byte-preserving
-  inbox staging and a copyable chat request. No API key or extra model runner.
-
-![Local GIF picker](docs/picker-preview.png)
+- **Local picker:** search Wikimedia Commons without an API key, or choose a local
+  file. Select a result to retrieve its original, preserve attribution and prepare
+  a chat request. Previews are opt-in; the picker makes no model calls.
 
 ## Quick start
 
@@ -45,9 +44,11 @@ If you use [uv](https://docs.astral.sh/uv/guides/install-python/),
 `python3.12 -m venv` step. Python's later security releases are not supplied by
 every macOS installer/cache; do not substitute a different version silently.
 
-Open the printed loopback URL. Click **GIF**, choose an original, optionally play
-its preview, then click **Use this GIF**. Copy the request into a chat using the
-plugin. The selected original remains in the private inbox until you remove it.
+Open the printed loopback URL. Enter a search and click **Search GIFs**, then
+**Choose GIF** on a result. **Use this GIF** automatically retrieves and validates
+the original in your private inbox. Alternatively, click **GIF** to choose a local
+file. Copy the prepared request into your chat. Native chat submission still needs
+that paste step. The selected original remains in the inbox until you remove it.
 Ctrl-C stops a standalone picker; a picker opened through MCP stops with its process.
 Use a separate private inbox and dedicated MCP process for each conversation.
 Global plugin enablement alone does not establish conversation isolation.
@@ -64,7 +65,7 @@ The repository contains a Codex marketplace and the complete plugin at
 add the marketplace using its supported CLI:
 
 ```sh
-codex plugin marketplace add Clinscott/gif-chat --ref v0.4.0
+codex plugin marketplace add Clinscott/gif-chat --ref v0.5.0
 codex plugin add gif-chat@gif-chat
 ```
 
@@ -87,7 +88,7 @@ Configure its required options: `python_executable`, `source_root` and
 bundled marketplace:
 
 ```sh
-claude plugin marketplace add Clinscott/gif-chat#v0.4.0 --scope local
+claude plugin marketplace add Clinscott/gif-chat#v0.5.0 --scope local
 claude plugin install gif-chat@gif-chat --scope local \
   --config python_executable="$GIF_PYTHON" \
   --config source_root="$GIF_SOURCE_ROOT" \
@@ -117,9 +118,31 @@ Cancel/Escape sends nothing. Your existing prompt draft is left intact.
 | `find_reply_gif` | Optional, explicitly enabled search of four bundled original reactions |
 
 Inputs are relative to the configured private inbox. URLs, arbitrary absolute
-paths, symlinks, hardlinks, devices and FIFOs are rejected. Native attachment IDs
-are not resolved in this release. The plugin has no provider search, model client,
-conversation store, prompt observer or automatic sending.
+paths, symlinks, hardlinks, devices and FIFOs are rejected by the decoder. The picker
+can retrieve only a result from its current Wikimedia Commons search; it accepts
+no arbitrary download URL. Native attachment IDs are not resolved in this release.
+There is no model client, conversation store, prompt observer or automatic sending.
+
+## Online GIF search
+
+The picker uses the public Wikimedia Commons API and filters for animated GIFs
+within the decoder's file, frame, dimension and duration limits. Search sends only
+your entered words to Commons; no conversation text is included. Results and
+selection handles stay in memory. Search retrieves metadata, and **Show preview**
+loads a Commons preview. Only **Use this GIF** saves the selected original.
+Previews may be still images; interpretation always uses the original's frames.
+
+Each result includes author, license and source. The prepared request retains that
+attribution as untrusted data. Respect the file's stated license when sharing it.
+Commons has a smaller pop-culture/reaction selection than commercial GIF libraries.
+The search has no provider key or provider charge, and makes no model calls.
+
+GIPHY is not connected: its standard integration rules require a key, client-side
+requests and permission for stored/proxied media, which conflicts with this private
+original-byte inspection workflow. KLIPY also requires a key and restricts original
+media storage. See [GIPHY's current rules](https://developers.giphy.com/docs/api/),
+[KLIPY's API terms](https://klipy.com/support/api-terms) and
+[Commons reuse guidance](https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia).
 
 Bounds: 20 MiB/original, 2048 px edges, 300 frames, 30 seconds normalized duration,
 12 initial images, 12 follow-up images, 640 px output edge, 8 MiB encoded result,
@@ -146,6 +169,8 @@ their canonical sources are the shared runtime and `integrations/` templates.
 No private experiment history or user media is part of this repository.
 [Release checks](docs/VERIFICATION.md) distinguish source/protocol/offline UI tests
 from installed native-host behavior.
+[Online search checks](docs/SEARCH-VERIFICATION.md) record the 0.5.0 source,
+package and real browser-to-original validation separately.
 
 MIT licensed, including the four bundled original reaction GIFs. Third-party GIFs
-you select remain yours and are not included in the distribution.
+retain their own licenses and are not included in the distribution.

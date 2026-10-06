@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "version": "0.4.0",
+  "version": "0.5.0",
   "host": "codex",
   "generated_by": "tools/build_plugins.py",
-  "content_sha256": "db18aa0fd4c9b2c0b261bb7524e17223fa3282391f0e525eca5283b724ac0fd3",
+  "content_sha256": "9b0af7fce2caf3e3ae90b0b89894d665c0f2644ac2c899b32aaef3174aebd871",
   "files": [
     {
       "path": ".codex-plugin/plugin.json",
       "bytes": 912,
-      "sha256": "990c95313420cb3c4eb62152411d3543405c5b5e442ad074230aa3f37691a082",
+      "sha256": "1c2681eb1c32298fe8e16517f8049c926cab3331547173a582e4a495228fb275",
       "mode": "0644"
     },
     {
@@ -31,8 +31,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 1750,
-      "sha256": "e0aca2dad8b5893826dd60b7880988a8f8772b0eb4dd2686fc4dbc044a4396e7",
+      "bytes": 1977,
+      "sha256": "b5de3fcedbfb0ff9a0aca3f05ffedb680566719468095eb3daa5a5e6478146d2",
       "mode": "0644"
     },
     {
@@ -50,7 +50,7 @@
     {
       "path": "gif_communication/__init__.py",
       "bytes": 22,
-      "sha256": "e364931a8afff672985ee99f795e6d8b20ff33c55d71d757ec211ec6689b3c19",
+      "sha256": "2c12b8ea17aeb6f9f72a6b02aca218bbc4508a46df9e365a8f6c45ad769e0b34",
       "mode": "0644"
     },
     {
@@ -133,8 +133,14 @@
     },
     {
       "path": "gif_host/picker.py",
-      "bytes": 7730,
-      "sha256": "ac718aa9eca85aea239f2c8a7313a76e5f6986ca09a79070998077009682dc5e",
+      "bytes": 11448,
+      "sha256": "fcf57e51e24a97cc5ef5f3b479902844220efa1bb510d16c0e81cf680217ebf2",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/repository.py",
+      "bytes": 13265,
+      "sha256": "46ea04075d54a4d8099d82415a5219bc486b8d08d2601412e7df6aad981a96be",
       "mode": "0644"
     },
     {
@@ -151,20 +157,20 @@
     },
     {
       "path": "gif_host/web/picker.css",
-      "bytes": 1809,
-      "sha256": "19ca065b2a8e174d43d4468a6f91f3758b9c20d2a1991569347fe090626aa525",
+      "bytes": 2855,
+      "sha256": "25cfb1e1fdb417f34cb7641adddcdae0054b1a5b05b8c3c9c666f9e77ea1e16a",
       "mode": "0644"
     },
     {
       "path": "gif_host/web/picker.html",
-      "bytes": 1662,
-      "sha256": "97ad4f9cec8742dcfd2ff04a92594b29cec5e0f0b39e1d338016d21a9d851364",
+      "bytes": 2330,
+      "sha256": "0f5800b008d4779eecac7e41e4560d68a557ce91f075430df416815098fe907f",
       "mode": "0644"
     },
     {
       "path": "gif_host/web/picker.js",
-      "bytes": 2653,
-      "sha256": "45dda6d7304b1e1f7cb778dbedb28c554ed8e846345b6ce56476b5b0c8bf1a93",
+      "bytes": 7012,
+      "sha256": "cbf356ffae708bcd2359af4120b7e61942d1433164088f4d49224c0afe2c69f4",
       "mode": "0644"
     },
     {
@@ -271,8 +277,8 @@
     },
     {
       "path": "skills/gif-communication/SKILL.md",
-      "bytes": 2221,
-      "sha256": "d26fe364243f7cb771ffaefe06d7ba725790b23f2f4711cfa44d76fad1b6c827",
+      "bytes": 2619,
+      "sha256": "11d9ae3440e17fa76831ae67a6a2f8e11d9e52330e8a56844e142b77f5ba9b9a",
       "mode": "0644"
     },
     {

@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "version": "0.4.0",
+  "version": "0.5.0",
   "host": "claude-code",
   "generated_by": "tools/build_plugins.py",
-  "content_sha256": "38dd46ff1359fefddcf0c03231c6b132bd89e200c2d8346ee0addb7ee5e89a7f",
+  "content_sha256": "8c08bbdde94d0eb8b8794f7e28f7f73f0c84ea7317f01a7f32211758dc872410",
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
       "bytes": 1489,
-      "sha256": "5e014f520c2db4468a7d96df88f588f210d6361edba4b8f8f9f64bf52aaf09f4",
+      "sha256": "00b1684149411477209ab8d170f63ecb5c7a70bf394aaed5c986df91b35ba134",
       "mode": "0644"
     },
     {
@@ -50,7 +50,7 @@
     {
       "path": "gif_communication/__init__.py",
       "bytes": 22,
-      "sha256": "e364931a8afff672985ee99f795e6d8b20ff33c55d71d757ec211ec6689b3c19",
+      "sha256": "2c12b8ea17aeb6f9f72a6b02aca218bbc4508a46df9e365a8f6c45ad769e0b34",
       "mode": "0644"
     },
     {
@@ -133,8 +133,14 @@
     },
     {
       "path": "gif_host/picker.py",
-      "bytes": 7730,
-      "sha256": "ac718aa9eca85aea239f2c8a7313a76e5f6986ca09a79070998077009682dc5e",
+      "bytes": 11448,
+      "sha256": "fcf57e51e24a97cc5ef5f3b479902844220efa1bb510d16c0e81cf680217ebf2",
+      "mode": "0644"
+    },
+    {
+      "path": "gif_host/repository.py",
+      "bytes": 13265,
+      "sha256": "46ea04075d54a4d8099d82415a5219bc486b8d08d2601412e7df6aad981a96be",
       "mode": "0644"
     },
     {
@@ -151,20 +157,20 @@
     },
     {
       "path": "gif_host/web/picker.css",
-      "bytes": 1809,
-      "sha256": "19ca065b2a8e174d43d4468a6f91f3758b9c20d2a1991569347fe090626aa525",
+      "bytes": 2855,
+      "sha256": "25cfb1e1fdb417f34cb7641adddcdae0054b1a5b05b8c3c9c666f9e77ea1e16a",
       "mode": "0644"
     },
     {
       "path": "gif_host/web/picker.html",
-      "bytes": 1662,
-      "sha256": "97ad4f9cec8742dcfd2ff04a92594b29cec5e0f0b39e1d338016d21a9d851364",
+      "bytes": 2330,
+      "sha256": "0f5800b008d4779eecac7e41e4560d68a557ce91f075430df416815098fe907f",
       "mode": "0644"
     },
     {
       "path": "gif_host/web/picker.js",
-      "bytes": 2653,
-      "sha256": "45dda6d7304b1e1f7cb778dbedb28c554ed8e846345b6ce56476b5b0c8bf1a93",
+      "bytes": 7012,
+      "sha256": "cbf356ffae708bcd2359af4120b7e61942d1433164088f4d49224c0afe2c69f4",
       "mode": "0644"
     },
     {
@@ -283,8 +289,8 @@
     },
     {
       "path": "skills/gif-communication/SKILL.md",
-      "bytes": 2079,
-      "sha256": "d9d2031f7403a6a0c3fc6a7c20ebc382d806d99c6af6a663932eab2b2ed7aa6a",
+      "bytes": 2477,
+      "sha256": "0eefb2f4d9b725339c3c8330aab5513ac2a12f64fd4a4688736758284f8728d7",
       "mode": "0644"
     },
     {

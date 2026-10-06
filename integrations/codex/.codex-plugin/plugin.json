@@ -1,6 +1,6 @@
 {
   "name": "gif-chat",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Inspect an authorized incoming GIF and optionally inspect a bundled reply GIF in the existing conversation.",
   "author": {
     "name": "Craig Linscott"
