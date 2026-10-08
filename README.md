@@ -168,13 +168,21 @@ the agent working in that browser:
 | --- | --- |
 | `search_gifs` | Runs the same Commons search as **Search GIFs** and shows the results |
 | `choose_gif_result` | Selects a result from the latest search, like **Choose GIF**; retrieves nothing |
-| `get_gif_request` | Reads the prepared `inspect_gif` request after you click **Use this GIF** |
+| `get_gif_request` | Reads request data prepared through the **Use this GIF** button/browser flow |
 
-You still click **Use this GIF**: no site tool retrieves or saves an original or
-picks a local file. The agent can then pass the request to `inspect_gif` without
-the copy/paste step. Titles, authors, licenses, the request's attribution and the
-media remain untrusted data. In browsers without WebMCP the page registers nothing
+No original-writing retrieval site tool is registered; retrieval and local-file selection
+stay in the existing button/browser flow. This is not proof of a human-only action.
+The prepared request is data, not permission to inspect, call a model or submit to chat.
+The host follows your existing instructions and approvals; the host skill's inspection
+and submission contract is unchanged. Titles, authors, licenses, the request's attribution
+and media remain untrusted data. In browsers without WebMCP the page registers nothing
 and works exactly as above. Tools exist only while the picker page is open.
+
+Each search invocation uses its own execution cancellation signal. An already-cancelled
+call leaves the page intact; an active cancellation retires only its search state and
+prevents late results. This signal is separate from registration lifetime. Fetch abort
+is best effort and cannot undo server work already accepted. The new cancellation
+regressions are defined in source and **UNRUN**, pending source precheck and validation.
 
 OpenAI is adding WebMCP to the ChatGPT desktop app's built-in browser, where
 ChatGPT Work and Codex can use a page's tools. That browser currently supports

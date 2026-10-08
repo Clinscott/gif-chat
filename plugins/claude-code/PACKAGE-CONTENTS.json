@@ -3,7 +3,7 @@
   "version": "0.5.0",
   "host": "claude-code",
   "generated_by": "tools/build_plugins.py",
-  "content_sha256": "252607146e601cae7dd2410169917730ffcf7372113f0856d1e48f6a3ee3a803",
+  "content_sha256": "5b5cf7278cbe5d8a1e52465e98fcdede73cd0748fa169b2f971e053426de5761",
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -169,8 +169,8 @@
     },
     {
       "path": "gif_host/web/picker.js",
-      "bytes": 12053,
-      "sha256": "0bdcf1a74a7b782a56b6ce0c7dbaf0b2b9808131fd7e49161f176589a030c625",
+      "bytes": 13952,
+      "sha256": "2afa1997bf717e36f550b07c28ffd972053390be174f195fa2d1941e82b5cd92",
       "mode": "0644"
     },
     {
