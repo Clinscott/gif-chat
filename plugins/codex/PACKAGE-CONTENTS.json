@@ -3,7 +3,7 @@
   "version": "0.5.0",
   "host": "codex",
   "generated_by": "tools/build_plugins.py",
-  "content_sha256": "9b0af7fce2caf3e3ae90b0b89894d665c0f2644ac2c899b32aaef3174aebd871",
+  "content_sha256": "3c65e6517f180ca46ea2bb05510464ac19bbc313e8f009dfb1e5ed255e8cec2c",
   "files": [
     {
       "path": ".codex-plugin/plugin.json",
@@ -163,14 +163,14 @@
     },
     {
       "path": "gif_host/web/picker.html",
-      "bytes": 2330,
-      "sha256": "0f5800b008d4779eecac7e41e4560d68a557ce91f075430df416815098fe907f",
+      "bytes": 2347,
+      "sha256": "119d41275bdd4023446325097efe5237268e79674ab17c74ed22bfe14b4f1308",
       "mode": "0644"
     },
     {
       "path": "gif_host/web/picker.js",
-      "bytes": 7012,
-      "sha256": "cbf356ffae708bcd2359af4120b7e61942d1433164088f4d49224c0afe2c69f4",
+      "bytes": 13952,
+      "sha256": "2afa1997bf717e36f550b07c28ffd972053390be174f195fa2d1941e82b5cd92",
       "mode": "0644"
     },
     {
