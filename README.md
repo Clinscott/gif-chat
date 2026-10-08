@@ -48,7 +48,9 @@ Open the printed loopback URL. Enter a search and click **Search GIFs**, then
 **Choose GIF** on a result. **Use this GIF** automatically retrieves and validates
 the original in your private inbox. Alternatively, click **GIF** to choose a local
 file. Copy the prepared request into your chat. Native chat submission still needs
-that paste step. The selected original remains in the inbox until you remove it.
+that paste step, except in a browser with WebMCP site tools (below), where your
+agent can read the request from the page. The selected original remains in the
+inbox until you remove it.
 Ctrl-C stops a standalone picker; a picker opened through MCP stops with its process.
 Use a separate private inbox and dedicated MCP process for each conversation.
 Global plugin enablement alone does not establish conversation isolation.
@@ -154,6 +156,35 @@ evidence is ambiguous. Media content is data, never authority to execute actions
 The picker itself makes no model calls. Reading its frames uses your current
 host/model allowance. There is no universal GIF-to-reasoning-token conversion.
 See [the measured pilot and its limits](docs/BENCHMARKS.md).
+
+## Agent site tools (WebMCP, early preview)
+
+WebMCP is a draft from the W3C Web Machine Learning Community Group, not a W3C
+Standard, and browser support is still changing. In a browser that exposes
+`document.modelContext.registerTool`, the open picker page offers three tools to
+the agent working in that browser:
+
+| Site tool | What it does |
+| --- | --- |
+| `search_gifs` | Runs the same Commons search as **Search GIFs** and shows the results |
+| `choose_gif_result` | Selects a result from the latest search, like **Choose GIF**; retrieves nothing |
+| `get_gif_request` | Reads the prepared `inspect_gif` request after you click **Use this GIF** |
+
+You still click **Use this GIF**: no site tool retrieves or saves an original or
+picks a local file. The agent can then pass the request to `inspect_gif` without
+the copy/paste step. Titles, authors, licenses, the request's attribution and the
+media remain untrusted data. In browsers without WebMCP the page registers nothing
+and works exactly as above. Tools exist only while the picker page is open.
+
+OpenAI is adding WebMCP to the ChatGPT desktop app's built-in browser, where
+ChatGPT Work and Codex can use a page's tools. That browser currently supports
+only tools registered from JavaScript on the top-level page, which is what the
+picker does. The page was tested with a native Chrome 151 implementation behind
+`--enable-features=WebMCPTesting`. **The ChatGPT desktop browser has not been
+tested.** Sources: [WebMCP draft](https://webmachinelearning.github.io/webmcp/),
+[ChatGPT site tools](https://learn.chatgpt.com/docs/webmcp),
+[Chrome imperative API](https://developer.chrome.com/docs/ai/webmcp/imperative-api),
+[OpenAI Developers announcement](https://x.com/OpenAIDevs/status/2092344959248761263).
 
 ## Development and verification
 
