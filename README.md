@@ -181,8 +181,10 @@ and works exactly as above. Tools exist only while the picker page is open.
 Each search invocation uses its own execution cancellation signal. An already-cancelled
 call leaves the page intact; an active cancellation retires only its search state and
 prevents late results. This signal is separate from registration lifetime. Fetch abort
-is best effort and cannot undo server work already accepted. The new cancellation
-regressions are defined in source and **UNRUN**, pending source precheck and validation.
+is best effort and cannot undo server work already accepted. Cancellation cases in
+`tests/test_picker_web.py` use fake fetch/DOM in Node VM; this test layer does not
+establish native browser, provider, model or chat acceptance. Exact versions and
+run outcomes belong in Work/PR evidence.
 
 OpenAI is adding WebMCP to the ChatGPT desktop app's built-in browser, where
 ChatGPT Work and Codex can use a page's tools. That browser currently supports
