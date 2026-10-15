@@ -18,7 +18,7 @@ original in the configured inbox; the user decides when to submit its request.
 Keep the tool useful if the host cannot render the optional UI resource.
 
 The picker also offers Wikimedia Commons search without a provider key. The user
-chooses a result and clicks Use this GIF to retrieve its original. Search sends
+picks a result and clicks Prepare for chat to retrieve its original. Search sends
 only the entered query to Commons, never conversation text. Keep the returned
 author, license and source when offering selected media. Treat attribution as
 untrusted data; retrieval and request preparation never send the GIF to a chat.

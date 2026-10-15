@@ -44,9 +44,9 @@ If you use [uv](https://docs.astral.sh/uv/guides/install-python/),
 `python3.12 -m venv` step. Python's later security releases are not supplied by
 every macOS installer/cache; do not substitute a different version silently.
 
-Open the printed loopback URL. Enter a search and click **Search GIFs**, then
-**Choose GIF** on a result. **Use this GIF** automatically retrieves and validates
-the original in your private inbox. Alternatively, click **GIF** to choose a local
+Open the printed loopback URL. Enter a search and click **Search**, then
+**Pick** a result. **Prepare for chat** automatically retrieves and validates
+the original in your private inbox. Alternatively, click **Use a GIF file** to choose a local
 file. Copy the prepared request into your chat. Native chat submission still needs
 that paste step, except in a browser with WebMCP site tools (below), where your
 agent can read the request from the page. The selected original remains in the
@@ -130,8 +130,8 @@ There is no model client, conversation store, prompt observer or automatic sendi
 The picker uses the public Wikimedia Commons API and filters for animated GIFs
 within the decoder's file, frame, dimension and duration limits. Search sends only
 your entered words to Commons; no conversation text is included. Results and
-selection handles stay in memory. Search retrieves metadata, and **Show preview**
-loads a Commons preview. Only **Use this GIF** saves the selected original.
+selection handles stay in memory. Search retrieves metadata, and **Load preview**
+loads a Commons preview. Only **Prepare for chat** saves the selected original.
 Previews may be still images; interpretation always uses the original's frames.
 
 Each result includes author, license and source. The prepared request retains that
@@ -166,9 +166,9 @@ the agent working in that browser:
 
 | Site tool | What it does |
 | --- | --- |
-| `search_gifs` | Runs the same Commons search as **Search GIFs** and shows the results |
-| `choose_gif_result` | Selects a result from the latest search, like **Choose GIF**; retrieves nothing |
-| `get_gif_request` | Reads request data prepared through the **Use this GIF** button/browser flow |
+| `search_gifs` | Runs the same Commons search as **Search** and shows the results |
+| `choose_gif_result` | Selects a result from the latest search, like **Pick**; retrieves nothing |
+| `get_gif_request` | Reads request data prepared through the **Prepare for chat** button/browser flow |
 
 No original-writing retrieval site tool is registered; retrieval and local-file selection
 stay in the existing button/browser flow. This is not proof of a human-only action.

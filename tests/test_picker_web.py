@@ -301,7 +301,7 @@ const scenarios = {
     const completion = el('stage').click();
     reply(1, ready('Plain request'));
     await completion;
-    assert.equal(el('status').textContent, 'Original ready. Copy the request and paste it into your chat.');
+    assert.equal(el('status').textContent, 'Ready. Copy the request below into your chat.');
     assert.equal(el('result-note').textContent, '');
   },
 
@@ -343,7 +343,7 @@ const scenarios = {
     assert.equal(found.results[0].preview_url, undefined);
     assert.equal(card(0).children[0].textContent, title, 'People see the same results as text');
     assert.deepEqual(plain(await tool('get_gif_request').execute({}, {})), {ready: false,
-      message: 'No prepared request yet. Retrieval through Use this GIF must complete first.'});
+      message: 'No prepared request yet. Retrieval through Prepare for chat must complete first.'});
     const chosen = await tool('choose_gif_result').execute({id: 'second'}, {});
     assert.equal(chosen.selected.id, 'second');
     assert.ok(card(1).classList.contains('selected'));
@@ -358,7 +358,7 @@ const scenarios = {
     reply(1, {...ready(prompt), attribution});
     await completion;
     assert.equal(el('status').textContent,
-      'Original ready. Your agent can read the prepared request and follow your instructions, or you can copy it into your chat.');
+      'Ready. Your agent can read the request from this page, or you can copy it into your chat.');
     assert.deepEqual(plain(await tool('get_gif_request').execute({}, {})), {ready: true, request: prompt,
       path: 'inbox/original.gif', sha256: 'f'.repeat(64), bytes: 128, attribution});
     assert.equal(el('prompt').value, prompt, 'The copy route stays available');
@@ -413,7 +413,7 @@ const scenarios = {
     const completion = el('stage').click();
     reply(1, ready('Fallback request'));
     await completion;
-    assert.equal(el('status').textContent, 'Original ready. Copy the request and paste it into your chat.');
+    assert.equal(el('status').textContent, 'Ready. Copy the request below into your chat.');
     await el('copy').click();
     assert.deepEqual(copied, ['Fallback request']);
   },
