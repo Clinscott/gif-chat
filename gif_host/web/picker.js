@@ -8,12 +8,38 @@ const safeLink = (value, hosts) => {
       !url.port && hosts.includes(url.hostname) ? url.href : null;
   } catch { return null; }
 };
+// Presentation only: a status line's words plus an optional tone for its mark.
+const say = (id, text, tone) => {
+  el(id).textContent = text;
+  if (tone) el(id).setAttribute("data-tone", tone); else el(id).removeAttribute("data-tone");
+};
+const sourceLink = (href) => {
+  const link = document.createElement("a"); link.href = href;
+  link.target = "_blank"; link.rel = "noopener noreferrer";
+  link.className = "source"; link.textContent = "Commons page";
+  return link;
+};
+// Presentation only: one cell per frame (up to 24) so motion length reads at a glance.
+const frameStrip = (item) => {
+  if (!Number.isInteger(item.frames) || item.frames < 1) return null;
+  const strip = document.createElement("p"); strip.className = "frames";
+  const cells = document.createElement("span"); cells.className = "cells";
+  cells.setAttribute("aria-hidden", "true");
+  if (item.frames > 24) cells.classList.add("more");
+  for (let index = 0; index < Math.min(item.frames, 24); index += 1) cells.append(document.createElement("i"));
+  const label = document.createElement("span"); label.className = "frames-label";
+  label.textContent = item.frames + (item.frames === 1 ? " frame" : " frames") +
+    (Number.isFinite(item.duration_ms) && item.duration_ms > 0 ?
+      " · " + (item.duration_ms / 1000).toFixed(1) + " s" : "");
+  strip.append(cells, label);
+  return strip;
+};
 function clearSelection() {
   selected = null;
   if (objectUrl) URL.revokeObjectURL(objectUrl);
   objectUrl = null;
   el("image").removeAttribute("src"); playing = false;
-  el("motion").textContent = "Play preview";
+  el("motion").textContent = "Play";
   el("preview").hidden = true;
   el("result").hidden = true;
   for (const card of el("search-results").children) card.classList.remove("selected");
@@ -22,11 +48,11 @@ function chooseRepository(item, card) {
   fileEpoch += 1;
   clearSelection();
   selected = {kind: "repository", item};
-  el("motion").textContent = "Show preview";
+  el("motion").textContent = "Load preview";
   card.classList.add("selected");
   el("filename").textContent = item.title + " · " + item.license;
   el("preview").hidden = false;
-  el("status").textContent = "Selected · Use this GIF retrieves the original from Wikimedia Commons.";
+  say("status", "Picked. Prepare for chat fetches the full original from Wikimedia Commons.");
   el("stage").focus();
 }
 el("search-form").addEventListener("submit", async (event) => {
@@ -38,36 +64,35 @@ el("search-form").addEventListener("submit", async (event) => {
   clearSelection();
   el("search-results").replaceChildren();
   el("search").disabled = true;
-  el("search-status").textContent = "Searching Wikimedia Commons…";
+  say("search-status", "Looking on Wikimedia Commons…", "busy");
   try {
     const response = await fetch("search", {method: "POST", headers: {"Content-Type": "application/json"},
       body: JSON.stringify({query})});
     const value = await response.json();
     if (epoch !== searchEpoch) return;
-    if (!response.ok) throw new Error(value.error || "Search is unavailable. Try again or choose a local GIF.");
+    if (!response.ok) throw new Error(value.error || "Search isn’t working right now. Try again, or use a file.");
     for (const item of value.results) {
       const card = document.createElement("div"); card.className = "gif-card";
       const title = document.createElement("h3"); title.textContent = item.title;
-      const info = document.createElement("p");
+      const info = document.createElement("p"); info.className = "meta";
       info.textContent = item.license + (item.author ? " · " + item.author : "") +
         " · " + Math.ceil(item.bytes / 1024) + " KiB";
       const choose = document.createElement("button"); choose.type = "button";
-      choose.textContent = "Choose GIF"; choose.setAttribute("aria-label", "Choose " + item.title);
+      choose.className = "pick-button";
+      choose.textContent = "Pick"; choose.setAttribute("aria-label", "Pick " + item.title);
       choose.addEventListener("click", () => chooseRepository(item, card));
       card.append(title, info, choose);
       const source = safeLink(item.source_url, ["commons.wikimedia.org"]);
-      if (source) {
-        const link = document.createElement("a"); link.href = source;
-        link.target = "_blank"; link.rel = "noopener noreferrer";
-        link.textContent = "Source and license"; card.append(document.createElement("br"), link);
-      }
+      if (source) card.append(sourceLink(source));
+      const strip = frameStrip(item);
+      if (strip) card.append(strip);
       el("search-results").append(card);
     }
-    el("search-status").textContent = value.results.length ?
-      value.results.length + " animated GIFs · Choose one, then preview it or use it." :
-      "No compatible GIFs found. Try another search or choose a local file.";
+    say("search-status", value.results.length ?
+      value.results.length + " found. Pick one to preview or use it." :
+      "Nothing usable for that search. Try other words, or use a file.", value.results.length ? "" : "empty");
   } catch (error) {
-    if (epoch === searchEpoch) el("search-status").textContent = error.message;
+    if (epoch === searchEpoch) say("search-status", error.message, "error");
   } finally { if (epoch === searchEpoch) el("search").disabled = false; }
 });
 el("choose").addEventListener("click", () => el("file").click());
@@ -76,18 +101,18 @@ el("file").addEventListener("change", async () => {
   clearSelection();
   const file = el("file").files[0];
   if (!file || file.size === 0 || file.size > 20 * 1024 * 1024) {
-    el("status").textContent = "Choose a GIF between 1 byte and 20 MiB."; return;
+    say("status", "Pick a GIF file up to 20 MiB.", "error"); return;
   }
   const header = new TextDecoder().decode(await file.slice(0, 6).arrayBuffer());
   if (epoch !== fileEpoch) return;
   if (!["GIF87a", "GIF89a"].includes(header)) {
-    el("status").textContent = "This file is not an original GIF."; return;
+    say("status", "That file isn’t a GIF.", "error"); return;
   }
   selected = {kind: "local", file};
   objectUrl = URL.createObjectURL(file);
   el("filename").textContent = file.name;
   el("preview").hidden = false;
-  el("status").textContent = "Selected · Use this GIF saves the original in your inbox.";
+  say("status", "Picked. Prepare for chat keeps an exact copy in your private inbox.");
 });
 el("motion").addEventListener("click", () => {
   if (!selected) return;
@@ -97,13 +122,14 @@ el("motion").addEventListener("click", () => {
   if (playing && preview) el("image").src = preview;
   else { el("image").removeAttribute("src"); playing = false; }
   el("motion").textContent = selected.kind === "local" ?
-    (playing ? "Stop preview" : "Play preview") : (playing ? "Hide preview" : "Show preview");
+    (playing ? "Stop" : "Play") : (playing ? "Hide preview" : "Load preview");
 });
 el("stage").addEventListener("click", async () => {
   if (!selected || el("stage").disabled) return;
   const selection = selected;
   el("stage").disabled = true;
-  el("status").textContent = selection.kind === "repository" ? "Retrieving the original GIF…" : "Saving the original GIF…";
+  say("status", selection.kind === "repository" ? "Fetching the original from Wikimedia Commons…" :
+    "Saving an exact copy…", "busy");
   try {
     const remote = selection.kind === "repository";
     const response = await fetch(remote ? "select" : "stage", {method:"POST",
@@ -111,7 +137,7 @@ el("stage").addEventListener("click", async () => {
       body: remote ? JSON.stringify({id: selection.item.id}) : selection.file});
     const value = await response.json();
     if (selection !== selected) return;
-    if (!response.ok) throw new Error(value.error || "Could not prepare this GIF. Try a different one.");
+    if (!response.ok) throw new Error(value.error || "That GIF couldn’t be prepared. Try another.");
     el("prompt").value = value.prompt;
     el("digest").textContent = "SHA-256 " + value.sha256 + " · " + value.bytes + " bytes";
     el("attribution").hidden = !remote;
@@ -120,26 +146,22 @@ el("stage").addEventListener("click", async () => {
       el("attribution").textContent = "Wikimedia Commons · " + item.title + " · " + item.license +
         (item.author ? " · " + item.author : "");
       const source = safeLink(item.source_url, ["commons.wikimedia.org"]);
-      if (source) {
-        const link = document.createElement("a"); link.href = source; link.target = "_blank";
-        link.rel = "noopener noreferrer"; link.textContent = "Source and license";
-        el("attribution").append(document.createElement("br"), link);
-      }
+      if (source) el("attribution").append(document.createElement("br"), sourceLink(source));
     }
     el("result").hidden = false;
     el("copy-status").textContent = "";
-    el("status").textContent = "Original ready. Copy the request and paste it into your chat.";
+    say("status", "Ready. Copy the request below into your chat.", "ok");
     el("copy").focus();
-  } catch(error) { if (selection === selected) el("status").textContent = error.message; }
+  } catch(error) { if (selection === selected) say("status", error.message, "error"); }
   finally { el("stage").disabled = false; }
 });
 el("copy").addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(el("prompt").value);
-    el("copy-status").textContent = "Copied. Paste into your chat when ready.";
+    el("copy-status").textContent = "Copied. Paste it into your chat.";
   } catch {
     el("prompt").focus(); el("prompt").select();
-    el("copy-status").textContent = "Select and copy the request above.";
+    el("copy-status").textContent = "Selected. Copy it with your keyboard.";
   }
 });
 window.addEventListener("pagehide", () => { if (objectUrl) URL.revokeObjectURL(objectUrl); });

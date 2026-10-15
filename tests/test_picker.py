@@ -36,7 +36,7 @@ class PickerTests(unittest.TestCase):
     def test_page_and_no_ambient_inbox_discovery(self):
         status, raw, headers = self.request("GET", self.picker.prefix + "/")
         self.assertEqual(status, 200)
-        self.assertIn(b'Say it with motion', raw)
+        self.assertIn(b'Find a GIF for your chat', raw)
         self.assertEqual(headers["Cache-Control"], "no-store")
         self.assertEqual(self.request("GET", "/")[0], 403)
         self.assertEqual(self.request("GET", self.picker.prefix + "/../runtime-lock.json")[0], 404)

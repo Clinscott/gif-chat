@@ -3,7 +3,7 @@
   "version": "0.5.0",
   "host": "codex",
   "generated_by": "tools/build_plugins.py",
-  "content_sha256": "9b0af7fce2caf3e3ae90b0b89894d665c0f2644ac2c899b32aaef3174aebd871",
+  "content_sha256": "3c724e46dc4546b2a3a717bf1de6c91a91bbb41831959a7c72eb3c7ca0619c1f",
   "files": [
     {
       "path": ".codex-plugin/plugin.json",
@@ -31,8 +31,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 1977,
-      "sha256": "b5de3fcedbfb0ff9a0aca3f05ffedb680566719468095eb3daa5a5e6478146d2",
+      "bytes": 1979,
+      "sha256": "bd24639ac35a8a0add033afaac44a85eead7dc76a0781d7539989e63f75966f2",
       "mode": "0644"
     },
     {
@@ -157,26 +157,26 @@
     },
     {
       "path": "gif_host/web/picker.css",
-      "bytes": 2855,
-      "sha256": "25cfb1e1fdb417f34cb7641adddcdae0054b1a5b05b8c3c9c666f9e77ea1e16a",
+      "bytes": 16778,
+      "sha256": "eab57b6b60436b2ffc3c73ac4ac9053d3a13ee4668cf4fb6caa530c9cb940a89",
       "mode": "0644"
     },
     {
       "path": "gif_host/web/picker.html",
-      "bytes": 2330,
-      "sha256": "0f5800b008d4779eecac7e41e4560d68a557ce91f075430df416815098fe907f",
+      "bytes": 5100,
+      "sha256": "b69d55b5ecce59c593d3c48e7989ab4029cdbdf3dfc42e38ff8c52087d2418df",
       "mode": "0644"
     },
     {
       "path": "gif_host/web/picker.js",
-      "bytes": 7012,
-      "sha256": "cbf356ffae708bcd2359af4120b7e61942d1433164088f4d49224c0afe2c69f4",
+      "bytes": 8037,
+      "sha256": "119b9f359e7ac609877cdb63fb7c27f7db50c811fa0c3ca92ce0fce516183b6f",
       "mode": "0644"
     },
     {
       "path": "gif_host/web/widget.html",
-      "bytes": 7558,
-      "sha256": "0087de05e5ac7ac80022cc2c00c68f7e215224bec3433e31d6924cc4348ac7dd",
+      "bytes": 9509,
+      "sha256": "f9d899d262430079ed4e26421301d605b364c4e0da0fe6e195de1a39d5b8a8cd",
       "mode": "0644"
     },
     {
@@ -277,8 +277,8 @@
     },
     {
       "path": "skills/gif-communication/SKILL.md",
-      "bytes": 2619,
-      "sha256": "11d9ae3440e17fa76831ae67a6a2f8e11d9e52330e8a56844e142b77f5ba9b9a",
+      "bytes": 2621,
+      "sha256": "98edadb3ae44ff579db4a96f6114029b192229e4465875b020e4fcb12a0df167",
       "mode": "0644"
     },
     {

@@ -16,8 +16,8 @@ runtime identity mismatch. Use a separate approved inbox and dedicated MCP proce
 per conversation; global enablement alone does not establish isolation.
 
 Ask the agent to open the GIF picker, or give it an original's relative path.
-The picker searches Wikimedia Commons without a key. Choose a result and click
-**Use this GIF** to retrieve its original, then copy the request into the chat.
+The picker searches Wikimedia Commons without a key. Pick a result and click
+**Prepare for chat** to retrieve its original, then copy the request into the chat.
 Searching never sends a model request or posts a GIF automatically.
 `open_gif_picker` provides a private local browser link and optional MCP Apps GIF
 button. Text-only hosts remain usable. Native Codex resource rendering is not
